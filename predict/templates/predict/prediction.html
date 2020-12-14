@@ -13,7 +13,19 @@
 
 		<!-- Header -->
 			<header id="header">
-				<h1><strong><a href="{% url 'index' %}">Smart healthcare system</a></strong></h1>
+				{% if user.is_authenticated %}
+					<h1>Welcome {{ user.username }}</h1>
+					<form action="{% url 'logoutuser' %}" method="POST">
+							{% csrf_token %}
+							<div class="3u 6u$(small) 12u$(xsmall)">
+									<ul class="actions vertical small">
+										<li><button type="submit" class="button special small" >Logout</button></li>
+									</ul>
+							</div>
+					</form>
+				{% else %}
+					<h1><strong><a href="{% url 'index' %}">Smart healthcare system</a></strong></h1>
+				{% endif %}
 				<nav id="nav">
 					<ul>
 						<li><a href="{% url 'index' %}">Home</a></li>
