@@ -3,15 +3,18 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 from django.db import IntegrityError
 from django.contrib.auth import login, logout, authenticate
-from django.utils import timezone
-from django.contrib.auth.decorators import login_required
-from .forms import ReportForm
-from .models import Report
+import io
+from django.http import FileResponse
+from reportlab.pdfgen import canvas
+
 
 # Create your views here.
 personal_details = []
 symptoms = []
 final_output = []
+
+def disease_search(request):
+    pass
 
 def home(request):
     drop_down = ["itching", "skin_rash" ,"nodal_skin_eruptions" ,"continuous_sneezing" ,
@@ -98,6 +101,16 @@ def logoutuser(request):
     if request.method == 'POST':
         logout(request)
         return redirect('index')
+
+def some_view(request):
+    buffer = io.BytesIO()
+    p = canvas.Canvas(buffer)
+    p.drawString(20, 800, "Hello world.")
+    p.showPage()
+    p.save()
+    buffer.seek(0)
+    return FileResponse(buffer, as_attachment=True, filename='hello.pdf')
+
 
 def prediction(request):
     import numpy as np

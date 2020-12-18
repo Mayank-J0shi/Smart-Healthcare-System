@@ -7,6 +7,7 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="stylesheet" href="{% static 'predict/assets/css/main.css' %}" />
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	</head>
 	<body class="landing">
 
@@ -14,18 +15,20 @@
 		<!-- Header -->
 			<header id="header" class="alt">
 				{% if user.is_authenticated %}
-					<h1>Welcome {{ user.username }}</h1>
-					<form action="{% url 'logoutuser' %}" method="POST">
-							{% csrf_token %}
-							<div class="3u 6u$(small) 12u$(xsmall)">
-									<ul class="actions vertical small">
-										<li><button type="submit" class="button special small" >Logout</button></li>
-									</ul>
-							</div>
-					</form>
+				<ul class="left_nav">
+				<li>Welcome {{ user.username }}</li>
 				{% else %}
-					<h1><strong><a href="{% url 'index' %}">Smart healthcare system</a></strong></h1>
-				{% endif %}
+					<li><h1><strong><a href="{% url 'index' %}">Smart healthcare system</a></strong></h1></li>
+					{% endif %}
+				<li class="search_wrap">
+
+					<form class="example" method="Post" action="{% url 'disease_search' %}" style="margin-top: -89px;margin-left: 40%;max-width:300px">
+						{% csrf_token %}
+						<input type="text" placeholder="Search.." name="search2">
+						<button type="submit"><i class="fa fa-search"></i></button>
+					</form>
+				</li>
+				</ul>
 				<nav id="nav">
 					<ul>
 						{% if user.is_authenticated %}
@@ -34,7 +37,22 @@
 							<li><a href="{% url 'signupuser' %}">SignUp</a></li>
 							<li><a href="{% url 'loginuser' %}">Login</a></li>
 						{% endif %}
-							<li><a href="{% url 'home' %}">Checkup</a></li>
+						<li><a href="{% url 'blog:all_blogs' %}">Blog</a></li>
+						<li><a href="{% url 'home' %}">Checkup</a></li>
+
+						{% if user.is_authenticated %}
+
+							<li><form action="{% url 'logoutuser' %}" method="POST">
+							{% csrf_token %}
+							<div class="3u 6u$(small) 12u$(xsmall)">
+									<ul class="actions vertical small">
+										<li><button type="submit" class="button special small" >Logout</button></li>
+									</ul>
+							</div>
+					</form></li>
+						{% endif %}
+
+
 					</ul>
 				</nav>
 			</header>

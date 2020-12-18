@@ -18,3 +18,11 @@ class Report(models.Model):
 
     def __str__(self):
         return self.name
+
+class description(models.Model):
+    id = models.AutoField(primary_key=True)
+    disease = models.CharField(max_length=250)
+    description =models.TextField(max_length=5000)
+
+    def __str__(self):
+        return self.disease

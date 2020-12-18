@@ -14,7 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path , include
 from predict import views
 
 urlpatterns = [
@@ -29,4 +29,11 @@ urlpatterns = [
     path('signup/', views.signupuser, name="signupuser"),
     path('login/', views.loginuser, name="loginuser"),
     path('logout/', views.logoutuser, name="logoutuser"),
+
+    #Searchbar
+    # path('seachbar/', views.seachbar, name="seachbar"),
+    path('disease_search/', views.disease_search,name="disease_search"),
+
+    #blog
+    path('blog/', include('blog.urls')),
 ]

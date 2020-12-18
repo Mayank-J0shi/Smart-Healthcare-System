@@ -1,0 +1,19 @@
+{% extends "predict/base.html" %}
+
+{% load static %}
+
+{% block content %}
+<header class="major special">
+    <h2 color="white">{{ blog.title }}</h2>
+    <p>{{ blog.date|date:'F jS Y' }}</p>
+</header>
+
+<div style="font-size:25px;">
+    <p>{{ blog.description|safe }}</p>
+</div>
+
+
+{% endblock %}
+
+
+
