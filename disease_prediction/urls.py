@@ -16,6 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from predict import views
+from django.views.generic import TemplateView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -28,6 +29,8 @@ urlpatterns = [
     path('printreport/', views.printreport, name="printreport"),
 
     # Auth
+    path('', TemplateView.as_view(template_name="predict/index.html")),
+    path('accounts/', include('allauth.urls')),
     path('signup/', views.signupuser, name="signupuser"),
     path('login/', views.loginuser, name="loginuser"),
     path('logout/', views.logoutuser, name="logoutuser"),

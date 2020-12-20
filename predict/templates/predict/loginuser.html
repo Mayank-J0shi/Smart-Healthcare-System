@@ -1,6 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 	{% load static %}
+	{% load socialaccount %}
 	<head>
 		<link rel="shortcut icon" href="{% static 'predict/images/cardiogram.png' %}" type="image/x-icon">
 		<title>Login</title>
@@ -50,11 +51,11 @@
 						<div class="3u 6u$(small) 12u$(xsmall)">
 							<ul class="actions vertical small">
 								<li><button type="submit" class="button special small">Log In</button></li>
+								<li><a href="{% provider_login_url 'google' %}?next=/"><button class="button special small">Login with Google</button></a></li>
 							</ul>
 						</div>
 					</form>
 				</div>
-					
 
 		<!-- Scripts -->
 			<script src="{% static 'predict/assets/js/jquery.min.js' %}"></script>
