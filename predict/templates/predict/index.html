@@ -22,7 +22,7 @@
 					{% endif %}
 				<li class="search_wrap">
 
-					<form class="example" method="Post" action="{% url 'disease_search' %}" style="margin-top: -89px;margin-left: 40%;max-width:300px">
+					<form class="example" method="get" action="{% url 'disease_search' %}" style="color:black ; margin-top: -89px;margin-left: 40%;max-width:300px">
 						{% csrf_token %}
 						<input type="text" placeholder="Search.." name="search2">
 						<button type="submit"><i class="fa fa-search"></i></button>

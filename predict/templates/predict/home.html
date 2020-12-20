@@ -41,17 +41,18 @@
 
                           <fieldset style="border-width:20px;border-color:red">
                               <h2>Personal details</h2>
-                              <input type="text" name="name" placeholder="Name"><br>
-                              <input type="text" name="age" placeholder="Age"><br>
-                              <select name="gender">
-                                <option value="">Gender</option>
-                                <option value="Male">Male</option>
-                                <option value="Female">Female</option>
+                              <input type="text" name="name" placeholder="Name" required><br>
+                              <input type="text" name="age" placeholder="Age" required><br>
+                              <select name="gender" required>
+                                <option value="" >Gender</option>
+                                <option value="Male" >Male</option>
+                                <option value="Female" >Female</option>
                                 <option value="Other">Other</option>
                               </select>
                               <br>
-                              <input type="number" name="height" placeholder="Height(in cm)"><br><br>
-                              <input type="number" name="weight" placeholder="Weight(in kg)"><br><br>
+                              <input type="number" name="height" placeholder="Height(in cm)" required><br><br>
+                              <input type="number" name="weight" placeholder="Weight(in kg)" required><br><br>
+                              <input type="text" name="pincode" placeholder="Pincode" required><br><br>
                           </fieldset>
                             <hr>
                           <fieldset>

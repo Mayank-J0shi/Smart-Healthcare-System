@@ -35,6 +35,8 @@ urlpatterns = [
     #Searchbar
     # path('seachbar/', views.seachbar, name="seachbar"),
     path('disease_search/', views.disease_search, name="disease_search"),
+    path('doctor_search/', views.doctor_search, name="doctor_search"),
+    path('doctor_found/', views.doc_querry, name="doc_querry"),
 
     #blog
     path('blog/', include('blog.urls')),

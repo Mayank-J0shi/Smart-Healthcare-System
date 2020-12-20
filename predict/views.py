@@ -3,7 +3,7 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 from django.db import IntegrityError
 from django.contrib.auth import login, logout, authenticate
-from .models import Report
+from .models import Report, database, doc_DB
 import io
 from django.http import FileResponse
 from reportlab.pdfgen import canvas
@@ -38,7 +38,30 @@ def printreport(request):
 
 
 def disease_search(request):
-    pass
+    query = request.GET.get("search2")
+    disease_obj = database.objects.all()
+    for d in disease_obj:
+        if d.disease == query:
+            return render(request, "predict/disease_search.html", {"d": d})
+    return render(request, "predict/no_search_result.html")
+
+def doctor_search(request):
+    drop_down= ["Neurologist","Gastroenterologist","Rheumatologist","Cardiologist","ENT_specialist","Neurologist","Allergist_Immunologist","Dermatologist"]
+    return render(request, "predict/search_your_doctor.html",{"drop_down":drop_down})
+
+def doc_querry(request):
+    query1 = request.GET.get('docType')
+    query2 = request.GET.get('pincode')
+    doc_list=[]
+    doc_obj = doc_DB.objects.all()
+    for doc in doc_obj:
+        if doc.Type == query1:
+            doc_list.append(doc)
+    if(len(doc_list)):
+        return render(request, "predict/found_doctors.html", {"doc": doc_list})
+    else:
+        return render(request, "predict/no_search_result.html")
+
 
 def home(request):
     drop_down = ["itching", "skin_rash" ,"nodal_skin_eruptions" ,"continuous_sneezing" ,
