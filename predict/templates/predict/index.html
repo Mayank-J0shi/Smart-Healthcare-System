@@ -42,14 +42,14 @@
 				</li>
 						{% if user.is_authenticated %}
 
+						<li><a href="{% url 'myReports' %}">My Reports</a></li>
 
 						{% else %}
-							<li><a href="{% url 'signupuser' %}">SignUp</a></li>
-							<li><a href="{% url 'loginuser' %}">Login</a></li>
+						<li><a href="{% url 'signupuser' %}">SignUp</a></li>
+						<li><a href="{% url 'loginuser' %}">Login</a></li>
 						{% endif %}
 						<li><a href="{% url 'blog:all_blogs' %}">Blog</a></li>
 						<li><a href="{% url 'doctor_search' %}">Search Doctors</a></li>
-						<li><a href="{% url 'myReports' %}">My Reports</a></li>
 
 						{% if user.is_authenticated %}
 
