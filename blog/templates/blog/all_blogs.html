@@ -1,10 +1,10 @@
 <!DOCTYPE HTML>
-<html>
+<html xmlns="http://www.w3.org/1999/html">
 	{% load static %}
 	<head>
 		<link rel="shortcut icon" href="{% static 'predict/images/cardiogram.png' %}" type="image/x-icon">
 		<title>Blog</title>
-		<meta charset="utf-8" />
+		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="stylesheet" href="{% static 'predict/assets/css/main.css' %}" />
 	</head>
@@ -26,8 +26,6 @@
 							<li><a href="{% url 'loginuser' %}">Login</a></li>
 						{% endif %}
 						<li><a href="{% url 'index' %}">Home</a></li>
-<!--						<li><a href="generic.html">Report</a></li>-->
-<!--						<li><a href="elements.html">Checkup</a></li>-->
 					</ul>
 				</nav>
 			</header>
@@ -39,24 +37,30 @@
 				<div class="container">
 
 					<header class="major special">
-						<h2 color="white">Blog</h2>
-						<p>Currently {{ blogs.count }} blog{{ blogs.count|pluralize }} are available.</p>
-					</header>
-
-				<div class="container">
-					{% for blog in blogs %}
-                        <div>
+                        <h2 color="white">Blogs</h2>
+                        <p>Currently {{ blogs.count }} blog{{ blogs.count|pluralize }} are available.</p>
+                    </header>
+                    {% for blog in blogs %}
+                          <div>
                             <a href="{% url 'blog:detail' blog.id %}">
                               <h2>{{ blog.title }}</h2>
                             </a>
                             <h3>{{ blog.date|date:'M d Y'|upper }}</h3>
-                            <h3>{{ blog.description|striptags|truncatechars:100 }}</h3>
-                        </div>
+                            <h4>{{ blog.description|striptags|truncatechars:100 }}</h4>
+                          </div>
                     {% endfor %}
 				</div>
-				</div>
-			</section>
+            </section>
 
+            <footer id="footer">
+				<div class="container">
+					<ul class="icons">
+						<li><a href="#" class="icon fa-facebook"></a></li>
+						<li><a href="#" class="icon fa-twitter"></a></li>
+						<li><a href="#" class="icon fa-instagram"></a></li>
+					</ul>
+				</div>
+			</footer>
 
 		<!-- Scripts -->
 			<script src="{% static 'predict/assets/js/jquery.min.js' %}"></script>

@@ -3320,3 +3320,10 @@ form.example::after {
   clear: both;
   display: table;
 }
+
+.search_data{
+     text-transform:capitalize;
+     color: black;
+    font-weight: 100;
+    margin-top: 14px;
+}
