@@ -1605,7 +1605,7 @@
 
 	body, input, select, textarea {
 		font-family: "Raleway", Arial, Helvetica, sans-serif;
-		font-size: 13pt;
+		font-size: 12pt;
 		font-weight: 400;
 		line-height: 2em;
 	}
@@ -2830,9 +2830,9 @@
 			}
 
 				#header nav ul li {
-					border-radius: 4px;
+					border-radius: 3px;
 					display: inline-block;
-					margin-left: 2.5em;
+					margin-left: 1.5em;
 					padding-left: 0;
 				}
 
@@ -3291,8 +3291,8 @@
 }
 
 form.example input[type=text] {
-  padding: 27px;
-  font-size: 17px;
+  padding: 20px;
+  font-size: 15px;
   border: 1px solid grey;
   float: left;
   width: 80%;
@@ -3305,7 +3305,7 @@ form.example button {
   padding: 0px;
   background: #2196F3;
   color: white;
-  font-size: 17px;
+  font-size: 13px;
   border: 1px solid grey;
   border-left: none;
   cursor: pointer;

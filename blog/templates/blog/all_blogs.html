@@ -40,15 +40,17 @@
                         <h2 color="white">Blogs</h2>
                         <p>Currently {{ blogs.count }} blog{{ blogs.count|pluralize }} are available.</p>
                     </header>
+					<ol>
                     {% for blog in blogs %}
                           <div>
                             <a href="{% url 'blog:detail' blog.id %}">
-                              <h2>{{ blog.title }}</h2>
+                              <h2><li>{{ blog.title }}</li></h2>
                             </a>
                             <h3>{{ blog.date|date:'M d Y'|upper }}</h3>
                             <h4>{{ blog.description|striptags|truncatechars:100 }}</h4>
                           </div>
                     {% endfor %}
+					</ol>
 				</div>
             </section>
 

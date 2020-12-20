@@ -103,12 +103,16 @@ def home(request):
 
 def index(request):
     import requests
+    list_disease = []
+    disease_obj = database.objects.all()
+    for d in disease_obj:
+        list_disease.append(d.disease)
     url = "https://goquotes-api.herokuapp.com/api/v1/random/1?type=tag&val=medical"
     response = requests.request("GET", url)
     quote_list = response.text.split('"')
     quote = quote_list[13]
     author = quote_list[17]
-    return render(request, "predict/index.html", {"quote": quote, "author": author})
+    return render(request, "predict/index.html", {"quote": quote, "author": author, "disease": list_disease})
 
 def signupuser(request):
     if request.method =='GET':
