@@ -33,7 +33,7 @@
 					<ol>
                     {% for report in reports %}
                           <div>
-                            <a href="{% url 'viewreport' report.id %}" >
+                            <a href="{% url 'viewreport' report.id %}" style="text-decoration:none;">
                               <h2><li>{{ report.disease }}</li></h2>
                             </a>
                           </div>

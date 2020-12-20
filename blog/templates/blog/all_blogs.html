@@ -45,7 +45,7 @@
 					<ol>
                     {% for blog in blogs %}
                           <div>
-                            <a href="{% url 'blog:detail' blog.id %}" >
+                            <a href="{% url 'blog:detail' blog.id %}" style="text-decoration:none;">
                               <h2><li>{{ blog.title }}</li></h2>
                             </a>
                             <h3>{{ blog.date|date:'M d Y'|upper }}</h3>
