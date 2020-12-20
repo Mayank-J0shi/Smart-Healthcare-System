@@ -3,6 +3,7 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 from django.db import IntegrityError
 from django.contrib.auth import login, logout, authenticate
+from .models import Report
 import io
 from django.http import FileResponse
 from reportlab.pdfgen import canvas
@@ -12,6 +13,29 @@ from reportlab.pdfgen import canvas
 personal_details = []
 symptoms = []
 final_output = []
+def report(request):
+    return render(request, "predict/report.html", {"details":personal_details, "symptoms":symptoms, "outputs": final_output})
+
+def myReports(request):
+    reports = Report.objects.filter(user=request.user)
+    return render(request, "predict/myReports.html", {'reports':reports})
+
+def viewreport(request, report_pk):
+    report = get_object_or_404(Report, pk=report_pk)
+    return render(request, "predict/viewreport.html", {'report':report})
+
+def printreport(request):
+    buffer = io.BytesIO()
+    p = canvas.Canvas(buffer)
+
+    p.drawString(100, 10, "Hello world.")
+
+    p.showPage()
+    p.save()
+
+    buffer.seek(0)
+    return FileResponse(buffer, filename='hello.pdf')
+
 
 def disease_search(request):
     pass
@@ -54,13 +78,6 @@ def home(request):
                 "inflammatory_nails", "blister", "red_sore_around_nose", "yellow_crust_ooze"]
     return render(request, "predict/home.html", {"drop_down":drop_down})
 
-def report(request):
-    return render(request, "predict/report.html", {"details":personal_details, "symptoms":symptoms, "outputs": final_output})
-
-def myReports(request):
-    return render(request, "predict/myReports.html")
-
-
 def index(request):
     import requests
     url = "https://goquotes-api.herokuapp.com/api/v1/random/1?type=tag&val=medical"
@@ -82,8 +99,8 @@ def signupuser(request):
                 return redirect('index')
             except IntegrityError:
                 return render(request, 'predict/signupuser.html', {'form': UserCreationForm(), 'error': 'Username already taken.'})
-            else:
-                return render(request, 'predict/signupuser.html', {'form': UserCreationForm(), 'error': 'Password did not match!'})
+        else:
+            return render(request, 'predict/signupuser.html', {'form': UserCreationForm(), 'error': 'Password did not match!'})
 
 def loginuser(request):
     if request.method == 'GET':
@@ -279,6 +296,12 @@ def prediction(request):
 
     else:
         consultdoctor = "other"
+
+    myreport = Report(name=name, age=age, gender=gender, height=height, weight=weight,
+                      symptom1=symptom1, symptom2=symptom2, symptom3=symptom3,
+                      symptom4=symptom4, symptom5=symptom5, disease=predicted_disease,
+                      consultDoctor=consultdoctor, user=request.user)
+    myreport.save()
 
     personal_details.clear()
     symptoms.clear()
