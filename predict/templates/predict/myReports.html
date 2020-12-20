@@ -1,0 +1,11 @@
+this is your report
+
+
+
+<ul>
+    {% for report in reports %}
+    <a href="{% url 'viewreport' report.id %}">
+    <li>{{ report.disease }}</li>
+    </a>
+    {% endfor %}
+</ul>
