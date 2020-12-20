@@ -27,14 +27,30 @@ def viewreport(request, report_pk):
 def printreport(request):
     buffer = io.BytesIO()
     p = canvas.Canvas(buffer)
+    p.drawString(225, 800, "Smart Healthcare System")
+    p.drawString(100, 750, "Personal details:")
+    x_coord = 100
+    y_coord = 725
+    for detail in personal_details:
+        p.drawString(x_coord, y_coord, detail)
+        y_coord -= 25
+    p.drawString(100, y_coord, "Symptoms:")
 
-    p.drawString(100, 10, "Hello world.")
+    y_coord -= 25
+    for symptom in symptoms:
+        p.drawString(x_coord, y_coord, symptom)
+        y_coord -= 25
+
+    p.drawString(100, y_coord, "Disease:")
+    y_coord -= 25
+    for output in final_output:
+        p.drawString(x_coord, y_coord, output)
+        y_coord -= 25
 
     p.showPage()
     p.save()
-
     buffer.seek(0)
-    return FileResponse(buffer, filename='hello.pdf')
+    return FileResponse(buffer, filename='report.pdf')
 
 
 def disease_search(request):

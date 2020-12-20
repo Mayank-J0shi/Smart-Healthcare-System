@@ -26,6 +26,7 @@
             <li><a href="{% url 'loginuser' %}">Login</a></li>
             {% endif %}
             <li><a href="{% url 'index' %}">Home</a></li>
+            <li><a href="{% url 'blog:all_blogs' %}">Blog</a></li>
         </ul>
     </nav>
 </header>
@@ -36,6 +37,10 @@
 <section id="main" class="wrapper">
     <div class="container">
 
+        <header class="major special">
+            <h2 color="white">Search deatails</h2>
+            <p>Fill the details</p>
+        </header>
         <form  action="{% url 'doc_querry' %}">
             <select name="docType">
                 <option value="">Type of Doctor</option>
@@ -50,7 +55,8 @@
                         <ul class="actions vertical small">
                             <li><button type="submit" class="button special small" >Search</button></li>
                         </ul>
-                </div>
+            </div>
+            <hr>
         </form>
 	</div>
 </section>

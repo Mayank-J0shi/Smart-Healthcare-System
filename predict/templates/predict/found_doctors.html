@@ -27,6 +27,7 @@
 							<li><a href="{% url 'loginuser' %}">Login</a></li>
 						{% endif %}
 						<li><a href="{% url 'index' %}">Home</a></li>
+						<li><a href="{% url 'blog:all_blogs' %}">Blog</a></li>
 					</ul>
 				</nav>
 			</header>
@@ -38,13 +39,16 @@
 				<div class="container">
 
 					<header class="major special">
-                        <h2 color="white"></h2>
-						{% for doc_data in doc %}
-							<p><strong>DOCTOR'S NAME :</strong></p> <p class="search_data"> {{ doc_data.Doctor }}</p><br>
-							<p><strong>DOCTOR'S Type : </strong></p><p class="search_data">{{ doc_data.Type }}</p><br>
-							<p><strong>DOCTOR'S AVAILABILITY AT LOCATION :</strong></p><p class="search_data"> {{ doc_data.Pincode }}</p><br>
-						{% endfor %}
+                        <h2 color="white">Doctor Found</h2>
+						<p>the doctors near you are </p>
                     </header>
+					<section>
+						{% for doc_data in doc %}
+							<h3 class="search_data"><strong>DOCTOR :</strong> {{ doc_data.Doctor }}, {{ doc_data.Type }}</h3>
+							<h3 class="search_data"><strong>DOCTOR'S LOCATION :</strong> {{ doc_data.Location }}</h3>
+							<hr>
+						{% endfor %}
+					</section>
 				</div>
             </section>
 

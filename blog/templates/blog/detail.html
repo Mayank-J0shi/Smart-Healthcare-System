@@ -26,6 +26,7 @@
 							<li><a href="{% url 'loginuser' %}">Login</a></li>
 						{% endif %}
 						<li><a href="{% url 'index' %}">Home</a></li>
+						<li><a href="{% url 'home' %}">Checkup</a></li>
 					</ul>
 				</nav>
 			</header>
@@ -40,6 +41,7 @@
                         <h2 color="white">{{ blog.title }}</h2>
                         <p><strong>Date :{{ blog.date|date:'F jS Y' }} </strong></p>
                         <p class="search_data">{{ blog.description|safe }}</p>
+						<hr>
                     </header>
 
 				</div>
