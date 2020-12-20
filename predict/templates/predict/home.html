@@ -29,14 +29,15 @@
 		<!-- Main -->
 			<section id="main" class="wrapper">
 				<div class="container">
+                    <header class="major special">
+                        <h2 color="white">Fill the details</h2>
+                        {% if user.is_authenticated %}
 
-
-                    <h2 class="major special">Fill the details</h2>
-				    <hr>
-
-
-
-
+                        {% else %}
+                            <p>No user detected, only accessible for logged in users</p>
+                        {% endif %}
+                    </header>
+                    <hr>
                     <form  action="{% url 'prediction' %}">
 
                           <fieldset style="border-width:20px;border-color:red">

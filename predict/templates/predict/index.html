@@ -48,7 +48,7 @@
 						<li><a href="{% url 'signupuser' %}">SignUp</a></li>
 						<li><a href="{% url 'loginuser' %}">Login</a></li>
 						{% endif %}
-						<li><a href="{% url 'blog:all_blogs' %}">Blog</a></li>
+						<li><a href="{% url 'blog:all_blogs' %}">Articles</a></li>
 						<li><a href="{% url 'doctor_search' %}">Search Doctors</a></li>
 
 						{% if user.is_authenticated %}
@@ -97,6 +97,7 @@
 					</div>
 				</section>
 			</section>
+			<hr>
 
 			<!-- Three -->
 				<section id="three" class="wrapper style1">

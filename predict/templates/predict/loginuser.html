@@ -24,9 +24,10 @@
 
 						{% else %}
 							<li><a href="{% url 'signupuser' %}">SignUp</a></li>
-							<li><a href="{% url 'loginuser' %}">Login</a></li>
 						{% endif %}
 						<li><a href="{% url 'index' %}">Home</a></li>
+						<li><a href="{% url 'blog:all_blogs' %}">Articles</a></li>
+						<li><a href="{% url 'doctor_search' %}">Search Doctors</a></li>
 					</ul>
 				</nav>
 			</header>
@@ -39,7 +40,10 @@
 
 					<header class="major special">
 						<h2 color="white">Login</h2>
-						<p>Get yourself registered</p>
+						{% if user.is_authenticated %}
+						{% else %}
+							<p>Get yourself registered for checkup.</p>
+						{% endif %}
 					</header>
 				</div>
 

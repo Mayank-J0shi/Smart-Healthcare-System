@@ -20,13 +20,14 @@
     <nav id="nav">
         <ul>
             {% if user.is_authenticated %}
-
+                <li><a href="{% url 'myReports' %}">My Reports</a></li>
             {% else %}
             <li><a href="{% url 'signupuser' %}">SignUp</a></li>
             <li><a href="{% url 'loginuser' %}">Login</a></li>
             {% endif %}
             <li><a href="{% url 'index' %}">Home</a></li>
-            <li><a href="{% url 'blog:all_blogs' %}">Blog</a></li>
+            <li><a href="{% url 'blog:all_blogs' %}">Articles</a></li>
+            <li><a href="{% url 'home' %}">Checkup</a></li>
         </ul>
     </nav>
 </header>
@@ -38,7 +39,7 @@
     <div class="container">
 
         <header class="major special">
-            <h2 color="white">Search deatails</h2>
+            <h2 color="white">Search details</h2>
             <p>Fill the details</p>
         </header>
         <form  action="{% url 'doc_querry' %}">

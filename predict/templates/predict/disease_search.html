@@ -20,6 +20,7 @@
 				{% endif %}
 				<nav id="nav">
 					<ul>
+
 						{% if user.is_authenticated %}
 
 						{% else %}
@@ -27,6 +28,7 @@
 							<li><a href="{% url 'loginuser' %}">Login</a></li>
 						{% endif %}
 						<li><a href="{% url 'index' %}">Home</a></li>
+						<li><a href="{% url 'home' %}">Checkup</a></li>
 					</ul>
 				</nav>
 			</header>
