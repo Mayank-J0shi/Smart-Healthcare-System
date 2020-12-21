@@ -7,8 +7,6 @@ from .models import Report, database, doc_DB
 import io
 from django.http import FileResponse
 from reportlab.pdfgen import canvas
-import win32api
-
 
 
 # Create your views here.
