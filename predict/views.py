@@ -146,13 +146,13 @@ def index(request):
 
 def signupuser(request):
     if request.method =='GET':
-        return render(request, 'predict/signupuser.html', {'form':UserCreationForm()})
+        return render(request, 'predict/signupuser.html', {'form': UserCreationForm()})
     else:
         if request.POST['password1'] == request.POST['password2']:
             try:
                 user = User.objects.create_user(request.POST['username'], password=request.POST['password1'])
                 user.save()
-                login(request, user)
+                login(request, user, backend='django.contrib.auth.backends.ModelBackend')
                 return redirect('index')
             except IntegrityError:
                 return render(request, 'predict/signupuser.html', {'form': UserCreationForm(), 'error': 'Username already taken.'})
@@ -206,21 +206,11 @@ def prediction(request):
     x_test = data_testing.values[:, 0:131]
     y_test = data_testing.values[:, 131:132]
 
-    clf3 = tree.DecisionTreeClassifier()
-    clf4 = RandomForestClassifier()
     gnb = GaussianNB()
-
-    clf3.fit(x_train, y_train)
-    clf4.fit(x_train, np.ravel(y_train))
     gnb = gnb.fit(x_train, np.ravel(y_train))
 
-    y_pred_tree = clf3.predict(x_test)
-    y_pred_random = clf4.predict(x_test)
     y_pred_naive = gnb.predict(x_test)
-
-    accuracy_score_tree = accuracy_score(y_test, y_pred_tree)
-    accuracy_score_random = accuracy_score(y_test, y_pred_naive)
-    accuracy_score_naive = accuracy_score(y_test, y_pred_random)
+    accuracy_score_naive = accuracy_score(y_test, y_pred_naive)
 
     disease = {"itching": 0, "skin_rash": 0, "nodal_skin_eruptions": 0, "continuous_sneezing": 0,
                "shivering": 0, "chills": 0, "joint_pain": 0, "stomach_pain": 0, "acidity": 0,
@@ -284,14 +274,11 @@ def prediction(request):
         disease[symptom5] = 1
 
     lis = []
-    # print(lis)
     for elem in disease.values():
         lis.append(elem)
 
     list_symptoms = [lis]
     # print(len(list_symptoms))
-    output_decision = clf3.predict(list_symptoms)
-    output_random = clf4.predict(list_symptoms)
     output_navie = gnb.predict(list_symptoms)
 
     # consult_doctor codes----------
@@ -380,6 +367,4 @@ def prediction(request):
     final_output.append("Consult to: " + consultdoctor)
 
     return render(request, "predict/prediction.html",
-                  {'decision':output_decision, 'random':output_random,
-                   'navie':predicted_disease, 'acc_tree':accuracy_score_tree,
-                   'acc_random':accuracy_score_random, 'acc_naive':accuracy_score_naive})
+                  {'navie':predicted_disease, 'acc_naive':accuracy_score_naive})

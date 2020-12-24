@@ -3,7 +3,7 @@
 	{% load static %}
 	<head>
 		<link rel="shortcut icon" href="{% static 'predict/images/cardiogram.png' %}" type="image/x-icon">
-		<title>Blog</title>
+		<title>Articles</title>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="stylesheet" href="{% static 'predict/assets/css/main.css' %}" />
@@ -52,8 +52,8 @@
 				<div class="container">
 
 					<header class="major special">
-                        <h2 color="white">Blogs</h2>
-                        <p>Currently {{ blogs.count }} blog{{ blogs.count|pluralize }} are available.</p>
+                        <h2 color="white">Articles</h2>
+                        <p>Currently {{ blogs.count }} article{{ blogs.count|pluralize }} are available.</p>
 						<hr>
                     </header>
 					<ol>

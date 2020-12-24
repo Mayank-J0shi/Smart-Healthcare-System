@@ -35,7 +35,7 @@
                     {% for report in reports %}
                           <div>
                             <a href="{% url 'viewreport' report.id %}" style="text-decoration:none;">
-                              <h2><li>{{ report.disease }}</li></h2>
+								<h2><li>Date : {{ report.created }}<br> {{ report.disease }}</li></h2>
                             </a>
                           </div>
                     {% endfor %}
